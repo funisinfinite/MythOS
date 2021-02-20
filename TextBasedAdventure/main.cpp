@@ -2,19 +2,21 @@
 #include <fstream>
 
 #include "Header.h"
+#include "Settings.h"
 
 using namespace std;
 
 int main() {
 
 	cout << "Made with MythOS\n Copyright 2021 Micha Rand and Alex Su\n\n";
-
-	string exits = readFile(START_FILE_STRING); // exits as one long string, commas in between
-	string selectedExit;
+	Settings settings(SETTINGS_PATH);
+	bool gameIsRunning = true, typeByDefault = settings.typewriterOnByDefault;
+	string exits = FindLinkerLine(START_FILE_STRING); // exits as one long string, commas in between
+	readFile(START_FILE_STRING, typeByDefault);
+	string currentFile;
 	string currentFolder = "";
 	string sInput = "";
 	int iInput;
-	bool gameIsRunning = true;
 
 	while (gameIsRunning)
 	{
@@ -35,35 +37,35 @@ int main() {
 
 		try 
 		{
-			selectedExit = getExit(exits, iInput) + ".txt"; // uses the last string of exits to find the right exit
+			currentFile = getExit(exits, iInput) + ".txt"; // uses the last string of exits to find the right exit
 		}
 		catch (int input) {
 			cout << "(your input was not an option)\n\n";
 			goto GetInput;
 		}
 
-		if (currentFolder == getFolder(selectedExit, currentFolder)) //if the current folder isn't changed
+		if (currentFolder == getFolder(currentFile, currentFolder)) //if the current folder isn't changed
 		{
-			selectedExit = currentFolder + selectedExit;
+			currentFile = currentFolder + currentFile;
 		}
-		currentFolder = getFolder(selectedExit, currentFolder);
+		currentFolder = getFolder(currentFile, currentFolder);
 
-		if (selectedExit.substr(0,12) == "PARENTFOLDER")
+		if (currentFile.substr(0,12) == "PARENTFOLDER")
 		{
-			selectedExit = selectedExit.substr(13, selectedExit.length());
+			currentFile = currentFile.substr(13, currentFile.length());
 		}
 
 		try 
 		{ 
-			exits = readFile(selectedExit); 
+			exits = FindLinkerLine(currentFile);
 		}
 		catch (string filename) {
 			cout << "(can't find a line in " + filename + " that starts with a '[' opening bracket. Make sure the file exists and links to other files correctly.\
  for now try a different input.)";
 			goto GetInput;
 		}
-
-		if (selectedExit == "End.txt")
+		readFile(currentFile, typeByDefault);
+		if (currentFile == "End.txt")
 		{
 			gameIsRunning = false;
 		}

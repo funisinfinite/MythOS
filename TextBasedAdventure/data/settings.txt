@@ -1,0 +1,2 @@
+typewriter speed:20
+typewriter on by default:true

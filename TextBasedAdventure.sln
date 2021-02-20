@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TextBasedAdventure", "TextBasedAdventure\TextBasedAdventure.vcxproj", "{795B51C4-9F28-4E0A-834B-A57028B79DB4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{83A4B4FA-58CE-4B1E-AF0B-57A00B51CBE3}"
+	ProjectSection(SolutionItems) = preProject
+		settings.txt = settings.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

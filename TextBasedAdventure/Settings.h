@@ -12,7 +12,7 @@ public:
 	ifstream settingsFile;
 	string GetSetting(std::string setting); // Return the value for a setting
 
-	int typewriterSpeed; // need to declare all settings
+	int typewriterWait; // need to declare all settings
 	bool typewriterOnByDefault;
 	Settings(string filepath);
 	~Settings() 

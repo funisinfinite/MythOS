@@ -10,13 +10,14 @@ int main() {
 	cout << "Made with MythOS\n Copyright 2021 Micha Rand and Alex Su\n\n";
 	Settings settings(SETTINGS_PATH);
 	bool gameIsRunning = true, typeByDefault = settings.typewriterOnByDefault;
+	int typewriterSpeed = settings.typewriterWait;
 	string exits = FindLinkerLine(START_FILE_STRING); // exits as one long string, commas in between
-	readFile(START_FILE_STRING, typeByDefault);
+	readFile(START_FILE_STRING, typeByDefault, settings.typewriterWait);
 	string currentFile;
 	string currentFolder = "";
 	string sInput = "";
 	int iInput;
-
+	cout << typewriterSpeed;
 	while (gameIsRunning)
 	{
 
@@ -63,7 +64,7 @@ int main() {
  for now try a different input.)";
 			goto GetInput;
 		}
-		readFile(currentFile, typeByDefault);
+		readFile(currentFile, settings.typewriterOnByDefault, settings.typewriterWait);
 		if (currentFile == "End.txt")
 		{
 			gameIsRunning = false;

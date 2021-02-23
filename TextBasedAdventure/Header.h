@@ -11,7 +11,6 @@
 #endif
 #define START_FILE_STRING "START.txt"
 #define END_FILE_STRING "End.txt"
-#define SLEEP_DURATION 20 // typewriter effect duration
 
 using namespace std;
 
@@ -48,7 +47,7 @@ string FindLinkerLine(string filename) // make sure the file has a linker and re
 	}
 }
 
-void readFile(string filename, bool typeByDefault) { // prints out description and returns exit options 
+void readFile(string filename, bool typeByDefault, int typewriterSpeed) { // prints out description and returns exit options 
 	cout << '\n';
 
 	ifstream RoomFile(filename);
@@ -80,7 +79,7 @@ void readFile(string filename, bool typeByDefault) { // prints out description a
 		}
 		myChars[1] = myChars[0];
 		cout << myChars[0];
-		if (sleepIsOn) LocalSleep(SLEEP_DURATION);
+		if (sleepIsOn) LocalSleep(typewriterSpeed);
 	}
 	RoomFile.close();
 }

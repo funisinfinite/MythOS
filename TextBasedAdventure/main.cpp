@@ -8,16 +8,20 @@ using namespace std;
 int main() {
 
 	cout << "Made with MythOS\n Copyright 2021 Micha Rand and Alex Su\n\n";
+
 	Settings settings(SETTINGS_PATH);
-	bool gameIsRunning = true, typeByDefault = settings.typewriterOnByDefault;
-	int typewriterSpeed = settings.typewriterWait;
+	bool gameIsRunning = true;
+
 	string exits = FindLinkerLine(START_FILE_STRING); // exits as one long string, commas in between
-	readFile(START_FILE_STRING, typeByDefault, settings.typewriterWait);
-	string currentFile;
-	string currentFolder = "";
-	string sInput = "";
+
+	readFile(START_FILE_STRING, settings.typewriterOnByDefault, settings.typewriterWait);
+
+	string currentFile; // the file MythOS will print to console
+	string currentFolder = ""; // the folder path to be prepended to all files until PARENTFOLDER\ is added
+
+	string sInput = ""; // input variables
 	int iInput;
-	cout << typewriterSpeed;
+
 	while (gameIsRunning)
 	{
 

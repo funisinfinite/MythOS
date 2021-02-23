@@ -1,2 +1,2 @@
-typewriter speed:29
-typewriter on by default:true
+typewriter wait:100
+typewriter on by default:false

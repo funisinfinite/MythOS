@@ -1,0 +1,2 @@
+typewriter wait:100
+typewriter on by default:true
